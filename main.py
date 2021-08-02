@@ -15,10 +15,19 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+	if message.author == client.user:
+		return
+
 	pattern_re = re.compile(r'grinding', re.IGNORECASE)
+	pattern_re2 = re.compile(r'grind', re.IGNORECASE)
 	if re.search(pattern_re, message.content):
 		logging.info('Message recieved')
 		await message.add_reaction('\U0001F44D')
 		await message.channel.send("The grind doesn't stop!")
 
-client.run('TOKEN HERE')
+	if re.search(pattern_re2,message.content):
+		logging.info('Message recived')
+		await message.add_reaction('\U0001F44D')
+		await message.channel.send("The grind doesn't stop!")
+
+client.run('TOKEN')
